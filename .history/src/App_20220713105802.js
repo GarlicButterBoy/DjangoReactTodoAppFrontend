@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 
-axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-axios.defaults.xsrfCookieName = "csrftoken";
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +45,7 @@ class App extends Component {
   };
 
   handleDelete = (item) => {
-    axios.delete(`/api/todos/${item.id}/`).then((res) => this.refreshList());
+    alert("delete" + JSON.stringify(item));
   };
 
   createItem = () => {

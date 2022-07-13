@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 
-axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-axios.defaults.xsrfCookieName = "csrftoken";
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,12 +21,7 @@ class App extends Component {
     this.refreshList();
   }
 
-  refreshList = () => {
-    axios
-      .get("/api/todos/")
-      .then((res) => this.setState({ todoList: res.data }))
-      .catch((err) => console.log(err));
-  };
+  refreshList
 
   toggle = () => {
     this.setState({ modal: !this.state.modal });
@@ -38,17 +30,11 @@ class App extends Component {
   handleSubmit = (item) => {
     this.toggle();
 
-    if (item.id) {
-      axios
-        .put(`/api/todos/${item.id}/`, item)
-        .then((res) => this.refreshList());
-      return;
-    }
-    axios.post("/api/todos/", item).then((res) => this.refreshList());
+    alert("save" + JSON.stringify(item));
   };
 
   handleDelete = (item) => {
-    axios.delete(`/api/todos/${item.id}/`).then((res) => this.refreshList());
+    alert("delete" + JSON.stringify(item));
   };
 
   createItem = () => {
